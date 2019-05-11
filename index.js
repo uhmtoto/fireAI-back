@@ -16,7 +16,7 @@ app.use('/auth', authRouter)
 app.use('/room', roomRouter)
 app.use('/sensor', sensorRouter)
 
-app.set('jwt-secret', 'jsonwebtokensecret')
+app.set('jwt-secret', process.env.JWTSECRET)
 
 mongoose.connect('mongodb://localhost/fireapi', {
   useNewUrlParser: true
