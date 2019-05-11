@@ -32,9 +32,9 @@ router.post('/register', (req, res) => {
   const formData = req.body
   if (verifyEmpty(res, formData, ['email', 'name', 'type', 'password'])) return
 
-  User.find({ email: formData.email }, (err, user) => {
+  User.findOne({ email: formData.email }, (err, user) => {
     if (err) res.status(500).json(Error('DB에 오류가 발생했습니다.'))
-    if (!user.length) {
+    if (user) {
       var newUser = new User()
       newUser = Object.assign(newUser, formData)
       newUser.password = sha512(newUser.password)
