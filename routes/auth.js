@@ -39,20 +39,19 @@ router.post('/register', (req, res) => {
   if (verifyEmpty(res, formData, ['email', 'name', 'type', 'password'])) return
 
   User.findOne({ email: formData.email }, (err, user) => {
-    if (err) res.status(500).json(Error('DB에 오류가 발생했습니다.'))
-    if (user) {
+    if (err) return res.status(500).json(Error('DB에 오류가 발생했습니다.'))
+    if (!user) {
       var newUser = new User()
       newUser = Object.assign(newUser, formData)
       newUser.password = sha512(newUser.password)
       newUser.save(err => {
-        if (err) res.status(500).json(Error('DB에 오류가 발생했습니다'))
+        if (err) return res.status(500).json(Error('DB에 오류가 발생했습니다'))
       })
+      res.json({ success: true })
     } else {
-      res.status(409).json(Error('이미 동일한 이메일이 사용되고 있습니다.'))
+      return res.status(409).json(Error('이미 동일한 이메일이 사용되고 있습니다.'))
     }
   })
-
-  res.json({ success: true })
 })
 
 module.exports = router
