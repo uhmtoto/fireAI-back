@@ -3,6 +3,7 @@ var Schema = mongoose.Schema
 
 var sensorSchema = new Schema({
   type: String,
+  name: String,
   floor: Number,
   position: Number
 })
