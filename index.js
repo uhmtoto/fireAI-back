@@ -4,10 +4,10 @@ var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
 var cors = require('cors')
 
-var authRouter = require('./routes/auth.js')
-var roomRouter = require('./routes/room.js')
+var authRouter = require('./routes/auth')
+var roomRouter = require('./routes/room')
 var sensorRouter = require('./routes/sensor')
-var statusRouter = require('./routes/status.js')
+var statusRouter = require('./routes/status')
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
