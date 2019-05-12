@@ -24,7 +24,13 @@ router.post('/login', (req, res) => {
       req.app.get('jwt-secret')
     )
 
-    res.json({ token: userToken })
+    res.json({
+      token: userToken,
+      userInfo: {
+        name: user.name,
+        type: user.type
+      }
+    })
   })
 })
 
