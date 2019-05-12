@@ -2,9 +2,10 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var sensorLogSchema = new Schema({
-  sensorIdx: Number,
+  sensorId: String,
   type: String,
-  value: Number
+  value: Number,
+  time: Date
 })
 
 module.exports = mongoose.model('sensorLog', sensorLogSchema)
