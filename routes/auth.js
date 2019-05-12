@@ -36,7 +36,8 @@ router.post('/login', (req, res) => {
 
 router.post('/register', (req, res) => {
   const formData = req.body
-  if (verifyEmpty(res, formData, ['email', 'name', 'type', 'password'])) return
+  if (verifyEmpty(res, formData, ['email', 'name', 'password'])) return
+  if (formData.type) return res.status(400).json(Error('허가되지 않은 정보가 입력되었습니다.'))
 
   User.findOne({ email: formData.email }, (err, user) => {
     if (err) return res.status(500).json(Error('DB에 오류가 발생했습니다.'))
