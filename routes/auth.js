@@ -19,7 +19,7 @@ router.post('/login', (req, res) => {
       {
         email: user.email,
         name: user.name,
-        permission: user.type
+        type: user.type
       },
       req.app.get('jwt-secret')
     )
