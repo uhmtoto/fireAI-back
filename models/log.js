@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var logSchema = new Schema({
-  sensorId: String,
+  sensor: String, // objectId of sensor
   type: String,
   value: Number,
   time: Number
