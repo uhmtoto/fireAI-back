@@ -7,7 +7,7 @@ var verifyPermission = require('../src/verify/permission')
 router.get('/type/:sensorType', (req, res) => {
   if (verifyPermission(req, res, 0)) return
 
-  Log.find({}, (err, logs) => {
+  Log.find({ type: req.params.sensorType }, (err, logs) => {
     if (err) res.status(500).json(Error('DB에 문제가 발생했습니다.'))
     res.json(logs)
   })
