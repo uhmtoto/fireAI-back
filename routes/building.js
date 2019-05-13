@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
   if (verifyPermission(req, res, 0)) return
 
   res.json({
-    buildingName: '학봉관'
+    name: '학봉관'
   })
 })
 
