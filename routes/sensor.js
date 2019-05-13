@@ -14,6 +14,15 @@ router.get('/', (req, res) => {
   })
 })
 
+router.get('/:sensorId', (req, res) => {
+  if (verifyPermission(req, res, 0)) return
+
+  Sensor.findById(req.params.sensorId, (err, sensor) => {
+    if (err) return res.status(500).json(Error('DB에 에러가 발생했습니다.'))
+    res.json(sensor)
+  })
+})
+
 router.post('/', (req, res) => {
   const formData = req.body
   if (verifyPermission(req, res, 2)) return
