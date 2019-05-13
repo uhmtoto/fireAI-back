@@ -9,6 +9,7 @@ var roomRouter = require('./routes/room')
 var sensorRouter = require('./routes/sensor')
 var statusRouter = require('./routes/status')
 var logRouter = require('./routes/log')
+var mainRouter = require('./routes/main')
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -19,6 +20,7 @@ app.use('/room', roomRouter)
 app.use('/sensor', sensorRouter)
 app.use('/status', statusRouter)
 app.use('/log', logRouter)
+app.use('/building', mainRouter)
 
 app.set('jwt-secret', process.env.JWTSECRET)
 
