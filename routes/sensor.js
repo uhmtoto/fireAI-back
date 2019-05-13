@@ -26,7 +26,7 @@ router.get('/:sensorId', (req, res) => {
 router.post('/', (req, res) => {
   const formData = req.body
   if (verifyPermission(req, res, 2)) return
-  if (verifyEmpty(res, formData, ['type', 'floor', 'position'])) return
+  if (verifyEmpty(res, formData, ['type', 'value', 'sensorId', 'time'])) return
 
   var newSensor = new Sensor()
   newSensor = Object.assign(newSensor, formData)
