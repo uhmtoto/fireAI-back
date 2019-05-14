@@ -14,14 +14,14 @@ router.get('/', (req, res) => {
   })
 })
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const formData = req.body
   if (verifyPermission(req, res, 2)) return
-  if (verifyEmpty(res, formData, ['name', 'floor', 'position'])) return
+  if (verifyEmpty(res, formData, ['name', 'roomNumber'])) return
 
   var newRoom = new Room()
   newRoom = Object.assign(newRoom, formData)
-  newRoom.save(err => {
+  await newRoom.save(err => {
     if (err) return res.status(500).json(Error('DB에 오류가 발생했습니다'))
   })
 
