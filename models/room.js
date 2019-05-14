@@ -2,7 +2,8 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var roomSchema = new Schema({
-  number: Number
+  name: String,
+  roomNumber: Number
 })
 
 module.exports = mongoose.model('room', roomSchema)
