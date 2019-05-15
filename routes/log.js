@@ -14,9 +14,9 @@ router.get('/', (req, res) => {
   })
 })
 
-router.post('/', (req, res) => {
-  if (verifyPermission(req, res, 3)) return
-  if (verifyEmpty(res, req.body, ['logs'])) return
+router.post('/', async (req, res) => {
+  if (await verifyPermission(req, res, 3)) return
+  if (await verifyEmpty(res, req.body, ['logs'])) return
   var logs = req.body.logs
 
   logs.forEach(v => {
