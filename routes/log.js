@@ -15,14 +15,14 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  if (await verifyPermission(req, res, 3)) return
-  if (await verifyEmpty(res, req.body, ['logs'])) return
+  if (verifyPermission(req, res, 3)) return
+  if (verifyEmpty(res, req.body, ['logs'])) return
   var logs = req.body.logs
 
   logs.forEach(v => {
     var newLog = new Log()
     newLog = Object.assign(newLog, v)
-    newLog.save(err => {
+    await newLog.save(err => {
       if (err) return res.status(500).json(Error('DB에 에러가 발생했습니다.'))
     })
     res.json({ success: true })
