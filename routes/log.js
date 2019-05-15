@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
   if (verifyEmpty(res, req.body, ['logs'])) return
   var logs = req.body.logs
 
-  logs.forEach(v => {
+  logs.forEach(async v => {
     var newLog = new Log()
     newLog = Object.assign(newLog, v)
     await newLog.save(err => {
