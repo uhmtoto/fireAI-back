@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var sensorSchema = new Schema({
-  room: String, // objectId of room
+  room: Object,
   type: String,
   name: String
 })
