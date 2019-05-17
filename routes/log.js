@@ -19,14 +19,14 @@ router.post('/', async (req, res) => {
   if (verifyEmpty(res, req.body, ['logs'])) return
   var logs = req.body.logs
 
-  logs.forEach(async v => {
+  await logs.forEach(async v => {
     var newLog = new Log()
     newLog = Object.assign(newLog, v)
     await newLog.save(err => {
       if (err) return res.status(500).json(Error('DB에 에러가 발생했습니다.'))
     })
-    res.json({ success: true })
   })
+  res.json({ success: true })
 })
 
 router.get('/type/:sensorType', (req, res) => {
